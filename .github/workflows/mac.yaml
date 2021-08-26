@@ -1,0 +1,32 @@
+name: Integration tests and Coveralls with build matrix on Mac
+
+on:
+    push:
+      tags:
+        - v*
+    
+jobs:
+    build:
+        runs-on: macos-latest
+        strategy:
+          matrix:
+            java: [ 11, 15 ]
+        
+        name: Build with Java ${{ matrix.java }} on macos-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Set up JDK ${{ matrix.java }}
+          uses: actions/setup-java@v1
+          with:
+            java-version: ${{ matrix.java }}
+        - name: Install Docker
+          uses: docker-practice/actions-setup-docker@master
+        - name: Cache Maven packages
+          uses: actions/cache@v2
+          with:
+            path: ~/.m2
+            key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml, **/*.yaml') }}
+            restore-keys: ${{ runner.os }}-m2-
+        - name: Build with Maven
+          run: mvn verify 
+          working-directory: school
