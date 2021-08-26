@@ -43,9 +43,9 @@ public class StudentSwingView extends JFrame implements StudentView {
 
 	private JButton btnDelete;
 	private JLabel errorMessageLabel;
-	private SchoolController schoolController;
+	private transient SchoolController schoolController;
 
-	KeyAdapter btnAddEnabler = new KeyAdapter() {
+	transient KeyAdapter btnAddEnabler = new KeyAdapter() {
 		@Override
 		public void keyReleased(KeyEvent e) {
 			btnAdd.setEnabled(!txtId.getText().trim().isEmpty() && !txtName.getText().trim().isEmpty());
@@ -60,75 +60,75 @@ public class StudentSwingView extends JFrame implements StudentView {
 
 	public StudentSwingView() {
 		setTitle("Student View");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[] { 27, 96, 0 };
-		gbl_contentPane.rowHeights = new int[] { 20, 14, 0, 0, 0, 0, 0 };
-		gbl_contentPane.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
-		contentPane.setLayout(gbl_contentPane);
+		GridBagLayout gblContentPane = new GridBagLayout();
+		gblContentPane.columnWidths = new int[] { 27, 96, 0 };
+		gblContentPane.rowHeights = new int[] { 20, 14, 0, 0, 0, 0, 0 };
+		gblContentPane.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
+		gblContentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
+		contentPane.setLayout(gblContentPane);
 
 		JLabel lblId = new JLabel("id");
-		GridBagConstraints gbc_lblId = new GridBagConstraints();
-		gbc_lblId.anchor = GridBagConstraints.EAST;
-		gbc_lblId.insets = new Insets(0, 0, 5, 5);
-		gbc_lblId.gridx = 0;
-		gbc_lblId.gridy = 0;
-		contentPane.add(lblId, gbc_lblId);
+		GridBagConstraints gbcLblId = new GridBagConstraints();
+		gbcLblId.anchor = GridBagConstraints.EAST;
+		gbcLblId.insets = new Insets(0, 0, 5, 5);
+		gbcLblId.gridx = 0;
+		gbcLblId.gridy = 0;
+		contentPane.add(lblId, gbcLblId);
 
 		txtId = new JTextField();
 		txtId.addKeyListener(btnAddEnabler);
 		txtId.setName("idTextBox");
-		GridBagConstraints gbc_txtId = new GridBagConstraints();
-		gbc_txtId.anchor = GridBagConstraints.NORTH;
-		gbc_txtId.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtId.insets = new Insets(0, 0, 5, 0);
-		gbc_txtId.gridx = 1;
-		gbc_txtId.gridy = 0;
-		contentPane.add(txtId, gbc_txtId);
+		GridBagConstraints gbcTxtId = new GridBagConstraints();
+		gbcTxtId.anchor = GridBagConstraints.NORTH;
+		gbcTxtId.fill = GridBagConstraints.HORIZONTAL;
+		gbcTxtId.insets = new Insets(0, 0, 5, 0);
+		gbcTxtId.gridx = 1;
+		gbcTxtId.gridy = 0;
+		contentPane.add(txtId, gbcTxtId);
 		txtId.setColumns(10);
 
 		lblNewLabel = new JLabel("name");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 1;
-		contentPane.add(lblNewLabel, gbc_lblNewLabel);
+		GridBagConstraints gbcLblNewLabel = new GridBagConstraints();
+		gbcLblNewLabel.anchor = GridBagConstraints.EAST;
+		gbcLblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbcLblNewLabel.gridx = 0;
+		gbcLblNewLabel.gridy = 1;
+		contentPane.add(lblNewLabel, gbcLblNewLabel);
 
 		txtName = new JTextField();
 		txtName.addKeyListener(btnAddEnabler);
 		txtName.setName("nameTextBox");
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 1;
-		contentPane.add(txtName, gbc_textField);
+		GridBagConstraints gbcTextField = new GridBagConstraints();
+		gbcTextField.insets = new Insets(0, 0, 5, 0);
+		gbcTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbcTextField.gridx = 1;
+		gbcTextField.gridy = 1;
+		contentPane.add(txtName, gbcTextField);
 		txtName.setColumns(10);
 
 		btnAdd = new JButton("Add");
 		btnAdd.setEnabled(false);
 		btnAdd.addActionListener(e -> schoolController.newStudent(new Student(txtId.getText(), txtName.getText())));
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton.gridwidth = 2;
-		gbc_btnNewButton.gridx = 0;
-		gbc_btnNewButton.gridy = 2;
-		contentPane.add(btnAdd, gbc_btnNewButton);
+		GridBagConstraints gbcBtnAddButton = new GridBagConstraints();
+		gbcBtnAddButton.insets = new Insets(0, 0, 5, 0);
+		gbcBtnAddButton.gridwidth = 2;
+		gbcBtnAddButton.gridx = 0;
+		gbcBtnAddButton.gridy = 2;
+		contentPane.add(btnAdd, gbcBtnAddButton);
 
 		scrollPane = new JScrollPane();
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridwidth = 2;
-		gbc_scrollPane.gridx = 0;
-		gbc_scrollPane.gridy = 3;
-		contentPane.add(scrollPane, gbc_scrollPane);
+		GridBagConstraints gbcScrollPane = new GridBagConstraints();
+		gbcScrollPane.insets = new Insets(0, 0, 5, 0);
+		gbcScrollPane.fill = GridBagConstraints.BOTH;
+		gbcScrollPane.gridwidth = 2;
+		gbcScrollPane.gridx = 0;
+		gbcScrollPane.gridy = 3;
+		contentPane.add(scrollPane, gbcScrollPane);
 
 		listStudentsModel = new DefaultListModel<>();
 		listStudents = new JList<>(listStudentsModel);
@@ -148,22 +148,22 @@ public class StudentSwingView extends JFrame implements StudentView {
 		btnDelete = new JButton("Delete Selected");
 		btnDelete.setEnabled(false);
 		btnDelete.addActionListener(e -> schoolController.deleteStudent(listStudents.getSelectedValue()));
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton_1.gridwidth = 2;
-		gbc_btnNewButton_1.gridx = 0;
-		gbc_btnNewButton_1.gridy = 4;
-		contentPane.add(btnDelete, gbc_btnNewButton_1);
+		GridBagConstraints gbcBtnDeleteButton = new GridBagConstraints();
+		gbcBtnDeleteButton.insets = new Insets(0, 0, 5, 0);
+		gbcBtnDeleteButton.gridwidth = 2;
+		gbcBtnDeleteButton.gridx = 0;
+		gbcBtnDeleteButton.gridy = 4;
+		contentPane.add(btnDelete, gbcBtnDeleteButton);
 
 		errorMessageLabel = new JLabel(" ");
 		errorMessageLabel.setForeground(Color.RED);
 		errorMessageLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		errorMessageLabel.setName("errorMessageLabel");
-		GridBagConstraints gbc_errorMessageLabel = new GridBagConstraints();
-		gbc_errorMessageLabel.gridwidth = 2;
-		gbc_errorMessageLabel.gridx = 0;
-		gbc_errorMessageLabel.gridy = 5;
-		contentPane.add(errorMessageLabel, gbc_errorMessageLabel);
+		GridBagConstraints gbcErrorMessageLabel = new GridBagConstraints();
+		gbcErrorMessageLabel.gridwidth = 2;
+		gbcErrorMessageLabel.gridx = 0;
+		gbcErrorMessageLabel.gridy = 5;
+		contentPane.add(errorMessageLabel, gbcErrorMessageLabel);
 	}
 
 	@Override
