@@ -1,0 +1,41 @@
+# to run before docker-compose up
+# wsl -d docker-desktop
+# sysctl -w vm.max_map_count=262144
+
+version: "2"
+
+services:
+  sonarqube:
+    image: sonarqube:9.0.1-community
+    depends_on:
+      - db
+    ports:
+      - "9000:9000"
+    networks:
+      - sonarnet
+    environment:
+      - sonar.jdbc.username=sonar
+      - sonar.jdbc.password=sonar
+      - sonar.jdbc.url=jdbc:postgresql://db:5432/sonar
+    volumes:
+      - sonarqube_conf:/opt/sonarqube/conf
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+  db:
+    image: postgres:alpine3.14
+    networks:
+      - sonarnet
+    volumes:
+      - postgresql:/var/lib/postgresql
+      - postgresql_data:/var/lib/postgresql_data
+    
+networks:
+  sonarnet:
+    driver: bridge
+            
+volumes:
+  sonarqube_conf:
+  sonarqube_data:
+  sonarqube_extensions:
+  postgresql:
+  postgresql_data:
