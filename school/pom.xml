@@ -25,6 +25,10 @@
     <mongo-java-server.version>1.38.0</mongo-java-server.version>
     <awaitility.version>4.1.0</awaitility.version>
     <picocli.version>4.6.1</picocli.version>
+
+    <sonar.issue.ignore.multicriteria>e11</sonar.issue.ignore.multicriteria>
+    <sonar.issue.ignore.multicriteria.e11.ruleKey>java:S2699</sonar.issue.ignore.multicriteria.e11.ruleKey>
+    <sonar.issue.ignore.multicriteria.e11.resourceKey>**/StudentSwingViewTest.java</sonar.issue.ignore.multicriteria.e11.resourceKey>
   </properties>
 
   <dependencies>
@@ -103,6 +107,7 @@
       <artifactId>picocli</artifactId>
       <version>${picocli.version}</version>
     </dependency>
+
   </dependencies>
 
   <build>
@@ -172,6 +177,7 @@
       </plugins>
     </pluginManagement>
     <plugins>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
@@ -335,6 +341,17 @@
                 <exclude>**/ModelViewControllerIT.java</exclude>
               </excludes>
             </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>jacoco</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
           </plugin>
         </plugins>
       </build>

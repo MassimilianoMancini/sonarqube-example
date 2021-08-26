@@ -2,6 +2,8 @@ package com.example.school.app.swing;
 
 import java.awt.EventQueue;
 import java.util.concurrent.Callable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.example.school.controller.SchoolController;
 import com.example.school.repository.mongo.StudentMongoRepository;
@@ -29,7 +31,6 @@ public class SchoolSwingApp implements Callable<Void> {
 	private String collectionName = "student";
 	
 	
-	
 	public static void main(String[] args) {
 		new CommandLine(new SchoolSwingApp()).execute(args);
 	}
@@ -46,7 +47,7 @@ public class SchoolSwingApp implements Callable<Void> {
 				studentView.setVisible(true);
 				schoolController.allStudents();
 			} catch (Exception e) {
-				e.printStackTrace();
+				Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Exception", e);
 			}
 		});
 		return null;
