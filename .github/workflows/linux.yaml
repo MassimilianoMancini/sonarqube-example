@@ -34,7 +34,7 @@ jobs:
             -DrepoToken=$COVERALLS_REPO_TOKEN 
             -Dsonar.projectKey=MassimilianoMancini_sonarqube-example
             -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.organization=MassimilianoMancini
+            -Dsonar.organization=massimilianomancini
           working-directory: school
           env: 
             COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
