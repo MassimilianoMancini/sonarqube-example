@@ -26,5 +26,10 @@
 			<type>2</type>
 			<locationURI>$%7BPARENT-1-PROJECT_LOC%7D/.github</locationURI>
 		</link>
+		<link>
+			<name>docker-compose.yaml</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/docker-compose.yaml</locationURI>
+		</link>
 	</linkedResources>
 </projectDescription>
