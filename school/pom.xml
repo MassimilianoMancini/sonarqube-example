@@ -191,7 +191,6 @@
       </plugins>
     </pluginManagement>
     <plugins>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
@@ -231,20 +230,6 @@
                 <source>src/it/java</source>
                 <source>src/e2e/java</source>
               </sources>
-            </configuration>
-          </execution>
-          <execution>
-            <id>add-test-resource</id>
-            <phase>generate-test-resources</phase>
-            <goals>
-              <goal>add-test-resource</goal>
-            </goals>
-            <configuration>
-              <resources>
-                <resource>
-                  <directory>src/test/resources</directory>
-                </resource>
-              </resources>
             </configuration>
           </execution>
         </executions>
